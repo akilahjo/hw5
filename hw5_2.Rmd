@@ -1,0 +1,35 @@
+
+```{r }
+options(repos = list(CRAN="http://cran.rstudio.com/"))
+library(tidyverse)
+library(ggplot2)
+library(ggridges)
+library(lubridate)
+library(ggrepel)
+library(colorspace)
+library("maps")
+theme_set(theme_bw())
+library(mapdata)
+install.packages("rmarkdown")
+library("knitr")
+
+states = map_data("state")
+California =subset(states, region == "california")
+
+load("C:/Users/Akila/Documents/visualization/wind_turbines.rda") #please change the path if needed
+dim(wind_turbines)
+
+wind_ca = subset(wind_turbines, wind_turbines$t_state == "CA")
+ggplot(data = California, mapping = aes(x=long,y=lat)) + 
+  geom_polygon(color = "black", fill = "gray")+
+  geom_point(data = wind_ca,aes(x=xlong,y=ylat))
+```
+
+
+
+---
+title: hw5_2.R
+author: Akilah
+date: '2022-08-01'
+
+---
